@@ -56,6 +56,12 @@ const getLocalizedTestData = (testData, urls) => {
         // noinspection Annotator
         let tests = JSON.parse(JSON.stringify(testData.default));
         let localeData = allLocales[multilocales];
+
+        if (!localeData.hasOwnProperty('sender'))
+            localeData.sender = {}
+        if (!localeData.hasOwnProperty('receiver'))
+            localeData.receiver = {}
+
         tests.locale = localeData.locale || tests.locale;
         tests.baseUrl = tests.baseUrl || urls.baseUrl;
         tests.productUrl = tests.productUrl || urls.productUrl;
@@ -64,7 +70,7 @@ const getLocalizedTestData = (testData, urls) => {
         tests.sender = {};
         tests.receiver = {};
         tests.sender.currency = tests.receiver.currency = 'USD';
-        tests.sender.type = tests.receiver.type = 'BUSINESS';
+        tests.sender.type = tests.receiver.type = 'PERSONAL';
         tests.sender.firstName = tests.receiver.firstName = '';
         tests.sender.lastName = tests.receiver.lastName = '';
         tests.sender.businessType = tests.receiver.businessType = '';
@@ -109,7 +115,6 @@ const getTestsData = (testCaseName, dataProviderFile, urls) => {
             readFile(dataProviderFile));
     } catch (error) {
         console.log(error)
-    } finally {
         console.error("\n Error in file " + dataProviderFile + "\n")
     }
 
@@ -140,7 +145,6 @@ const getTestsDataByCountry = (testCaseName, dataProviderFile, locales, urls) =>
             readFile(dataProviderFile));
     } catch (error) {
         console.log(error)
-    } finally {
         console.error("\n Error in file " + dataProviderFile + "\n")
     }
 

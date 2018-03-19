@@ -36,6 +36,7 @@ program
   .option('--inspect', 'activate devtools in chrome')
   .option('--no-timeouts', 'remove timeouts in debug/inspect use case')
     .option('-L, --locales [locale]', 'locales you wany to run in')
+    .option('-C, --maxConcurrent number', 'Maximum number of tests to run at same time')
     .option('-M , --data-path [file]', 'path to the local data file', list)
   .parse(process.argv);
 
